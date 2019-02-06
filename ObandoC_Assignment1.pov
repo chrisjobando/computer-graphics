@@ -3,8 +3,8 @@ include "metals.inc"
 include "glass.inc"
 
 camera {
-  location <0.0, 8.0, -30.0>
-  look_at <0.0, 0.0, 0.0>
+  location <-5.0, 12.0, -25.0>
+  look_at <0.0, 5.0, 0.0>
 }
 
 light_source {
@@ -18,15 +18,18 @@ background { // Wall
 
 plane { // Table
   y, 0
-  pigment {
-    P_Chrome3
-  }
-  finish {
-    F_MetalB
+  texture {
+    T_Silver_5A
+    pigment {
+      P_Silver2
+    }
+    finish {
+      F_MetalB
+    }
   }
 }
 
-sor {
+sor { // Vase
   6
   <0, -0.5>
   <1, 0>,
@@ -35,6 +38,13 @@ sor {
   <0.4, 13>,
   <0.8, 15>
   open
-  pigment { Col_Glass_Ruby }
-  finish { F_MetalA }
+  texture {
+    pigment {
+      Col_Glass_Ruby
+    }
+    finish {
+      F_Glass6
+    }
+  }
+  sturm on
 }
