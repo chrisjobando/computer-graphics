@@ -1,6 +1,8 @@
-include "colors.inc"
-include "metals.inc"
-include "glass.inc"
+#include "colors.inc"
+#include "metals.inc"
+#include "glass.inc" 
+#include "pencil.inc"
+#include "textures.inc"
 
 camera {
   location <-5.0, 12.0, -25.0>
@@ -8,7 +10,7 @@ camera {
 }
 
 light_source {
-  <4.0, 6.0, -10.0> // Location
+  <3.0, 5.0, -1.0> // Location
   White // Color
 }
 
@@ -28,23 +30,71 @@ plane { // Table
     }
   }
 }
+  
+#declare Vase=
+  lathe {
+    cubic_spline
+  	25,
+  	<0.000000,0.072539>,
+  	<0.018135,0.075130>,
+  	<0.090674,0.025907>,
+  	<0.139896,0.000000>,
+  	<0.173575,0.020725>,
+  	<0.183938,0.090674>,
+  	<0.186528,0.437824>,
+  	<0.147668,0.546632>,
+  	<0.077720,0.642487>,
+  	<0.062176,0.821244>,
+  	<0.062176,0.888601>,
+  	<0.069948,0.922280>,
+  	<0.069948,0.968912>,
+  	<0.062176,0.984456>,
+  	<0.051813,1.000000>,
+  	<0.038860,0.963731>,
+  	<0.044041,0.813472>,
+  	<0.051813,0.626943>,
+  	<0.126943,0.531088>,
+  	<0.163212,0.432642>,
+  	<0.160622,0.088083>,
+  	<0.113990,0.054404>,
+  	<0.056995,0.126943>,
+  	<0.015544,0.137306>,
+  	<0.000000,0.129534>
+	  sturm
+    texture {
+      pigment{Col_Glass_Ruby}
+      finish{F_Glass7 ior 1.5}
+    }
+    scale 15
+  }  
 
+object {Vase}
+
+
+/**
 sor { // Vase
   6
   <0, -0.5>
   <1, 0>,
-  <2.3, 4>,
+  <2.5, 4>,
   <1, 8>,
   <0.4, 13>,
   <0.8, 15>
   open
   texture {
-    pigment {
-      Col_Glass_Ruby
-    }
-    finish {
-      F_Glass6
-    }
+    pigment{Col_Glass_Ruby}
+    finish{F_Glass7 ior 1.5}
   }
   sturm on
 }
+*/
+   
+   
+/**         
+object {
+  pencil         
+  rotate <180,180,0>
+  translate <-3,5.3,0>    
+  scale 1.3
+}    
+*/
