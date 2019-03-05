@@ -3,8 +3,8 @@
 // the pencil is "standing up" with the point at <0, 0, 0>
 
 #include "shapes.inc"
-                                            
-#declare White = color red 1 green 1 blue 1;                                            
+
+#declare White = color red 1 green 1 blue 1;
 #declare Black = color red 0 green 0 blue 0;
 #declare Wood = color red .47 green .22 blue .19;
 
@@ -52,8 +52,8 @@ union
    plane{y, 0 inverse}
   }
   object{QCone_Y inverse scale<.13,1,.13>}
-  texture{pigment{Wood}} 
- }                       
+  texture{pigment{Wood}}
+ }
 
  intersection
  {
@@ -68,18 +68,18 @@ union
   brilliance .6
   specular 0.3
   reflection 0.002}
-  } 
- }  
+  }
+ }
  text {
    ttf "cyrvetic.ttf" "ENGLAND" 0.001,0
-   pigment {White}                    
+   pigment {White}
    scale 0.06
    translate <1.7,-0.03,-0.11>
    rotate 90*z
  }
  text {
    ttf "cyrvetic.ttf" "DERWENT - GRAPHIC                                38" 0.001,0
-   pigment {White}                    
+   pigment {White}
    scale 0.1
    translate <2.2,-0.04,-0.11>
    rotate 90*z
