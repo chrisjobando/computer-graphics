@@ -2,11 +2,11 @@
 // including the eraser and thingy that holds the eraser.
 // the pencil is "standing up" with the point at <0, 0, 0>
 
-#include "shapes.inc"
+#include "shapes.inc"  
+#include "woods.inc"
 
 #declare White = color red 1 green 1 blue 1;
 #declare Black = color red 0 green 0 blue 0;
-#declare Wood = color red .47 green .22 blue .19;
 
 #declare Paint = texture {pigment{Black}
   finish
@@ -52,7 +52,7 @@ union
    plane{y, 0 inverse}
   }
   object{QCone_Y inverse scale<.13,1,.13>}
-  texture{pigment{Wood}}
+  texture{T_Wood14}
  }
 
  intersection

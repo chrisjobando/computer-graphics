@@ -4,6 +4,8 @@
 #include "pencil.inc"
 #include "textures.inc"
 
+// ------------------------------------------ Vase --------------------------------------------
+
 #declare VaseBody =
   lathe {
     cubic_spline
@@ -14,10 +16,6 @@
     <0.5,13>,
     <0.3,13>
     sturm
-    texture {
-      pigment{Col_Glass_Ruby}
-      finish{F_Glass7 ior 1.3}
-    }
   }
 
 #declare VaseRim =
@@ -25,36 +23,31 @@
     0.5, 0.02
     translate<0,13,0>
     sturm
-    texture {
-      pigment{Col_Glass_Ruby}
-      finish{F_Glass7 ior 1.5}
-    }
   }
 
 #declare Vase =
   merge {
     object {VaseBody}
     object {VaseRim}
+    texture {
+      pigment{Col_Glass_Ruby}
+      finish{F_Glass7 ior 1.3}
+    }  
+    scale 0.8
   }
+
+// ------------------------------------- Marble Holder ----------------------------------------
 
 #declare BoxBody =
   box {
-    <-8,0,-0.5>, <-4,1.8,1.5>
-    texture {
-      pigment {Col_Glass_Clear}
-      finish{F_Glass7 ior 1.5}
-    }
+    <-7,0,-0.5>, <-4,1.8,1.5>
   }
 
 #declare BoxRound =
   cylinder {
-    <-8,0,0.5>,
-    <-8,1.8,0.5>,
+    <-7,0,0.5>,
+    <-7,1.8,0.5>,
     1
-    texture {
-      pigment {Col_Glass_Clear}
-      finish{F_Glass7 ior 1.5}
-    }
   }
 
 #declare MarbleHolder =
@@ -63,78 +56,156 @@
     object{BoxRound}
     object{
       BoxRound
-      translate<4,0,0>
-    }
-    scale 1.1
+      translate<3,0,0>
+    }   
+    interior{caustics 0.2 ior 1}
+    texture {
+      pigment {
+        color rgbt<0.1,0.6,0.5,0.9>
+      }
+      finish {
+        specular 0.9
+        phong_size 300
+        phong 0.1
+        reflection 0.1
+      }
+    }    
+    translate <0.8,0,0>
+    rotate <0,-30,0>
+    scale 0.8
   }
+
+// ------------------------------------ Pencil Holder -----------------------------------------
 
 #declare PencilHolderBody =
   sor{
-    5
-    <0,0>,
-    <0.9,0>,
-    <0.8,1.8>,
-    <0.6,2.4>,
-    <0.6,2>
-    texture {
-      pigment {Col_Glass_Clear}
-      finish{F_Glass7 ior 1.5}
-    }
+    6
+    <0.5,-0.5>,
+    <0.72,0>,
+    <0.72,0.8>,
+    <0.62,1.1>
+    <0.6,1.6>,
+    <0.6,1.7> 
+    open
     sturm
   }
 
 #declare PencilHolderRim =
   torus {
-    0.7, 0.1
-    translate<0,2.4,0>
+    0.62, 0.05
+    translate<0,1.6,0>
     sturm
-    texture {
-      pigment {Col_Glass_Clear}
-      finish{F_Glass7 ior 1.5}
-    }
   }
 
 #declare PencilHolder =
   merge {
     object {PencilHolderBody}
-    object {PencilHolderRim}
-    translate<-5,1.8,0.8>
+    object {PencilHolderRim} 
+    interior{caustics 0.2 ior 1}
+    texture {
+      pigment {  
+        //Col_Glass_Ruby
+        color rgbt<0.1,0.6,0.5,0.9>
+      }
+      finish {
+        specular 0.9
+        phong_size 300
+        phong 0.1
+        reflection 0.1
+      }
+    }
+    translate<-2.8,1.3,-1.1>
     scale 1.1
   }
 
-// Scene Set-up
-camera {
-  location <-15,5,-12>
-  look_at <-5,5.5,0>
+// -------------------------------------------- Wall ------------------------------------------
+
+background {
+  //rgb<0.6,0.6,0.6> 
+  color White
+}
+
+// -------------------------------------------- Table -----------------------------------------
+
+plane {
+  y, 0
+  texture{pigment{Red}}
+  //texture {T_Chrome_2B}
+  //finish {metallic}
+}
+
+// ------------------------------------------ Containers --------------------------------------
+
+//object {Vase}
+//object {MarbleHolder}
+object {PencilHolder}
+
+// --------------------------------------- Scene Set-up ---------------------------------------
+
+
+camera { 
+  // Top View
+  location <-3.5,8,-2>
+  look_at <-3.5,0,-2>
+   
+  // Front View
+  //location <-3,2,-5>
+  //look_at <-3,2,0> 
+       
+  // Side View
+  //location <-8,2.5,-1>
+  //look_at <0,2.5,-1>
+  
+  // Full Scene View
+  //location <-1.5,3,-16>
+  //look_at <-1.5,4,0>
 }
 
 light_source {
   <0,6,-6>
-  color Gray60
-}
-
-// Wall
-background {
-  rgb<0.8,0.8,0.8>
-}
-
-// Table
-plane {
-  y, 0
-  texture {T_Chrome_2B}
-  finish {metallic}
+  color rgb<0.3,0.3,0.3>
 }
 
 
-// Containers
-object {Vase}
-object {MarbleHolder}
-object {PencilHolder}
+// --------------------------------------------- Pencils --------------------------------------
 
-// Pencils
-object {
+/**
+object { // Pencil 1
   pencil
-  rotate <180,220,20>
-  translate <-6.3,6.7,1>
-  scale 1.1
+  rotate <29,180,180>
+  translate <-3.6,6.25,0.4>
+  scale 0.8
 }
+
+object { // Pencil 2
+  pencil
+  rotate <10,-20,140>
+  translate <-1.8,5.9,-2.5> 
+  scale 0.8
+}
+*/ 
+
+object { // Pencil 3
+  pencil
+  rotate <25,-50,130>
+  translate <-1.9,6,-2.8> 
+  scale 0.8
+}  
+
+/**
+object { // Pencil 4
+  pencil
+  rotate <215,210,-15>
+  translate <-4.1,6.2,-3.2>
+  scale 0.8
+}
+
+
+
+object { // Pencil
+  pencil
+  rotate <0,0,0>
+  translate <-4.3,6.25,-3.5>
+  scale 0.8
+}
+*/
