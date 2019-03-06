@@ -1,6 +1,4 @@
-// a lead pencil, with a slightly dulled point,
-// including the eraser and thingy that holds the eraser.
-// the pencil is "standing up" with the point at <0, 0, 0>
+// Modified code from http://objects.povworld.org/cgi-bin/dl.cgi?pencil.zip
 
 #include "shapes.inc"  
 #include "woods.inc"
