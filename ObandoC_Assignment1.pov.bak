@@ -1,100 +1,140 @@
 #include "colors.inc"
 #include "metals.inc"
-#include "glass.inc" 
+#include "glass.inc"
 #include "pencil.inc"
 #include "textures.inc"
 
-camera {
-  location <-5.0, 12.0, -25.0>
-  look_at <0.0, 5.0, 0.0>
-}
-
-light_source {
-  <3.0, 5.0, -1.0> // Location
-  White // Color
-}
-
-background { // Wall
-  White
-}
-
-plane { // Table
-  y, 0
-  texture {
-    T_Silver_5A
-    pigment {
-      P_Silver2
-    }
-    finish {
-      F_MetalB
-    }
-  }
-}
-  
-#declare Vase=
+#declare VaseBody =
   lathe {
     cubic_spline
-  	25,
-  	<0.000000,0.072539>,
-  	<0.018135,0.075130>,
-  	<0.090674,0.025907>,
-  	<0.139896,0.000000>,
-  	<0.173575,0.020725>,
-  	<0.183938,0.090674>,
-  	<0.186528,0.437824>,
-  	<0.147668,0.546632>,
-  	<0.077720,0.642487>,
-  	<0.062176,0.821244>,
-  	<0.062176,0.888601>,
-  	<0.069948,0.922280>,
-  	<0.069948,0.968912>,
-  	<0.062176,0.984456>,
-  	<0.051813,1.000000>,
-  	<0.038860,0.963731>,
-  	<0.044041,0.813472>,
-  	<0.051813,0.626943>,
-  	<0.126943,0.531088>,
-  	<0.163212,0.432642>,
-  	<0.160622,0.088083>,
-  	<0.113990,0.054404>,
-  	<0.056995,0.126943>,
-  	<0.015544,0.137306>,
-  	<0.000000,0.129534>
-	  sturm
+    7,
+    <-0.1,0>, <0,0>, <1,0>,
+    <2.6,4>,
+    <0.9,8>,
+    <0.5,13>,
+    <0.3,13>
+    sturm
+    texture {
+      pigment{Col_Glass_Ruby}
+      finish{F_Glass7 ior 1.3}
+    }
+  }
+
+#declare VaseRim =
+  torus {
+    0.5, 0.02
+    translate<0,13,0>
+    sturm
     texture {
       pigment{Col_Glass_Ruby}
       finish{F_Glass7 ior 1.5}
     }
-    scale 15
-  }  
-
-object {Vase}
-
-
-/**
-sor { // Vase
-  6
-  <0, -0.5>
-  <1, 0>,
-  <2.5, 4>,
-  <1, 8>,
-  <0.4, 13>,
-  <0.8, 15>
-  open
-  texture {
-    pigment{Col_Glass_Ruby}
-    finish{F_Glass7 ior 1.5}
   }
-  sturm on
+
+#declare Vase =
+  merge {
+    object {VaseBody}
+    object {VaseRim}
+  }
+
+#declare BoxBody =
+  box {
+    <-8,0,-0.5>, <-4,1.8,1.5>
+    texture {
+      pigment {Col_Glass_Clear}
+      finish{F_Glass7 ior 1.5}
+    }
+  }
+
+#declare BoxRound =
+  cylinder {
+    <-8,0,0.5>,
+    <-8,1.8,0.5>,
+    1
+    texture {
+      pigment {Col_Glass_Clear}
+      finish{F_Glass7 ior 1.5}
+    }
+  }
+
+#declare MarbleHolder =
+  merge {
+    object{BoxBody}
+    object{BoxRound}
+    object{
+      BoxRound
+      translate<4,0,0>
+    }
+    scale 1.1
+  }
+
+#declare PencilHolderBody =
+  sor{
+    5
+    <0,0>,
+    <0.9,0>,
+    <0.8,1.8>,
+    <0.6,2.4>,
+    <0.6,2>
+    texture {
+      pigment {Col_Glass_Clear}
+      finish{F_Glass7 ior 1.5}
+    }
+    sturm
+  }
+
+#declare PencilHolderRim =
+  torus {
+    0.7, 0.1
+    translate<0,2.4,0>
+    sturm
+    texture {
+      pigment {Col_Glass_Clear}
+      finish{F_Glass7 ior 1.5}
+    }
+  }
+
+#declare PencilHolder =
+  merge {
+    object {PencilHolderBody}
+    object {PencilHolderRim}
+    translate<-5,1.8,0.8>
+    scale 1.1
+  }
+
+// Scene Set-up
+camera {
+  location <-15,5,-12>
+  look_at <-5,5.5,0>
 }
-*/
-   
-   
-/**         
+
+light_source {
+  <0,6,-6>
+  color Gray60
+}
+
+// Wall
+background {
+  rgb<0.8,0.8,0.8>
+}
+
+// Table
+plane {
+  y, 0
+  texture {T_Chrome_2B}
+  finish {metallic}
+}
+
+
+// Containers
+object {Vase}
+object {MarbleHolder}
+object {PencilHolder}
+
+// Pencils
 object {
-  pencil         
-  rotate <180,180,0>
-  translate <-3,5.3,0>    
-  scale 1.3
-}    
-*/
+  pencil
+  rotate <180,220,20>
+  translate <-6.3,6.7,1>
+  scale 1.1
+}
