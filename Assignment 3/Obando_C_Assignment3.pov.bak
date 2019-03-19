@@ -1,3 +1,5 @@
+#include "colors.inc"
+
 camera {
   location<2,2,2>
   look_at <0,0,1>
@@ -8,13 +10,17 @@ light_source {
   <2,2,2>,1
 }
 
+background {
+  color Cyan
+}
+
 #macro tree(i)
   union {
     cone {
       <0,0,0>, 0.1,
       <0,0,1>, 0.06
       
-      pigment {rgb 1}
+      pigment {color Brown}
     }
     #if (i>0)
       union{
@@ -33,4 +39,4 @@ light_source {
     #end
 } #end
 
-tree(14)
+tree(10)
